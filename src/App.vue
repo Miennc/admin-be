@@ -1,26 +1,37 @@
-<script setup>
-import HeaderSection from '../src/components/layouts/HeaderSection.vue';
-import SidebarSection from '../src/components/layouts/SidebarSection.vue';
-import FooterSection from '../src/components/layouts/FooterSection.vue';
-</script>
 <template>
-  <div>
-    <div class="flex  bg-packed font-lexend dark:bg-gray-900">
-      <div
-          id="sidebar-scroll"
-          class="flex-sidebar lg:flex-auto w-[300px] lg:block hidden bg-white dark:bg-gray-800 border-r-2 dark:border-gray-700 h-screen lg:z-0 z-40 overflow-auto lg:relative fixed"
-      >
-        <SidebarSection/>
-      </div>
-      <div class="flex-auto w-full overflow-auto h-screen " id="body-scroll">
-        <HeaderSection/>
-        <div class="main-content min-h-[650px]">
-          <router-view></router-view>
-        </div>
-        <FooterSection/>
-      </div>
-    </div>
-
+  <div id="app">
+    <router-view />
   </div>
 </template>
 
+<script>
+import appConfig from "@/app.config";
+import { notificationMethods } from "@/state/helpers";
+
+export default {
+  name: "app",
+  page: {
+    // All subcomponent titles will be injected into this template.
+    titleTemplate(title) {
+      title = typeof title === "function" ? title(this.$store) : title;
+      return title ? `${title} | ${appConfig.title}` : appConfig.title;
+    },
+  },
+  methods: {
+    clearNotification: notificationMethods.clear,
+  },
+  watch: {
+    /**
+     * Clear the alert message on route change
+     */
+    // eslint-disable-next-line no-unused-vars
+    $route(to, from) {
+      // clear alert on location change
+      this.clearNotification();
+    },
+  },
+  mounted() {
+    // document.getElementsByTagName("html")[0].setAttribute("dir", "rtl");
+  }
+};
+</script>
