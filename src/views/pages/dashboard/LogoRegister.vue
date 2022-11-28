@@ -104,46 +104,44 @@
                 </template>
                 <div class="row">
                   <div class="col-12">
-                    <div class="card">
-                      <div class="card-body">
-                        <h4 class="card-title">Data Table</h4>
-                        <div class="mt-4 row">
-                          <div class="col-sm-12 col-md-6">
-                            <div id="tickets-table_length" class="dataTables_length">
-                              <label class="d-inline-flex align-items-center">
-                                Show&nbsp;
-                                <b-form-select v-model="perPage" size="sm" :options="pageOptions"></b-form-select>
-                                &nbsp;entries
-                              </label>
-                            </div>
+                    <div class="card-body">
+                      <h4 class="card-title">Data Table</h4>
+                      <div class="mt-4 row">
+                        <div class="col-sm-12 col-md-6">
+                          <div id="tickets-table_length" class="dataTables_length">
+                            <label class="d-inline-flex align-items-center">
+                              Show&nbsp;
+                              <b-form-select v-model="perPage" size="sm" :options="pageOptions"></b-form-select>
+                              &nbsp;entries
+                            </label>
                           </div>
-                          <!-- Search -->
-                          <div class="col-sm-12 col-md-6">
-                            <div id="tickets-table_filter" class="dataTables_filter text-md-end">
-                              <label class="d-inline-flex align-items-center">
-                                Search:
-                                <b-form-input v-model="filter" type="search" placeholder="Search..."
-                                  class="form-control form-control-sm ms-2"></b-form-input>
-                              </label>
-                            </div>
+                        </div>
+                        <!-- Search -->
+                        <div class="col-sm-12 col-md-6">
+                          <div id="tickets-table_filter" class="dataTables_filter text-md-end">
+                            <label class="d-inline-flex align-items-center">
+                              Search:
+                              <b-form-input v-model="filter" type="search" placeholder="Search..."
+                                class="form-control form-control-sm ms-2"></b-form-input>
+                            </label>
                           </div>
-                          <!-- End search -->
                         </div>
-                        <!-- Table -->
-                        <div class="mb-0 table-responsive">
-                          <b-table :items="tableData" :fields="fields" responsive="sm" :per-page="perPage"
-                            :current-page="currentPage" :sort-by.sync="sortBy" :sort-desc.sync="sortDesc"
-                            :filter="filter" :filter-included-fields="filterOn" @filtered="onFiltered"></b-table>
-                        </div>
-                        <div class="row">
-                          <div class="col">
-                            <div class="dataTables_paginate paging_simple_numbers float-end">
-                              <ul class="mb-0 pagination pagination-rounded">
-                                <!-- pagination -->
-                                <b-pagination v-model="currentPage" :total-rows="rows" :per-page="perPage">
-                                </b-pagination>
-                              </ul>
-                            </div>
+                        <!-- End search -->
+                      </div>
+                      <!-- Table -->
+                      <div class="mb-0 table-responsive">
+                        <b-table :items="tableData" :fields="fields" responsive="sm" :per-page="perPage"
+                          :current-page="currentPage" :sort-by.sync="sortBy" :sort-desc.sync="sortDesc" :filter="filter"
+                          :filter-included-fields="filterOn" @filtered="onFiltered"></b-table>
+                      </div>
+                      <div class="row">
+                        <div class="col">
+                          <div class="dataTables_paginate paging_simple_numbers float-end">
+                            <ul class="mb-0 pagination pagination-rounded">
+                              <!-- pagination -->
+                              <b-pagination v-model="currentPage" :total-rows="rows" :per-page="perPage">
+                              </b-pagination>
+                            </ul>
                           </div>
                         </div>
                       </div>
