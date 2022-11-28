@@ -6,7 +6,7 @@ import appConfig from "@/app.config";
 
 export default {
   page: {
-    title: "Dashboard",
+    title: "고객사 로고 등록",
     meta: [
       {
         name: "description",
@@ -20,7 +20,7 @@ export default {
   },
   data() {
     return {
-      title: "Dashboard",
+      title: "고객사 로고 등록",
       items: [
         {
           text: "Minible",
@@ -38,6 +38,6 @@ export default {
 <template>
   <Layout>
     <PageHeader :title="title" :items="items" />
-   
+    <router-view></router-view>
   </Layout>
 </template>

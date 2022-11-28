@@ -223,11 +223,7 @@ export default {
       </router-link>
     </div>
 
-    <button
-      type="button"
-      @click="toggleMenu"
-      class="btn btn-sm px-3 font-size-16 header-item vertical-menu-btn"
-    >
+    <button type="button" @click="toggleMenu" class="px-3 btn btn-sm font-size-16 header-item vertical-menu-btn">
       <i class="fa fa-fw fa-bars"></i>
     </button>
 
@@ -241,67 +237,38 @@ export default {
               {{ $t(item.label) }}
             </li>
             <li v-if="!item.isTitle && !item.isLayout" :key="item.id">
-              <a
-                v-if="hasItems(item)"
-                href="javascript:void(0);"
-                class="is-parent"
-                :class="{
-                  'has-arrow': !item.badge,
-                  'has-dropdown': item.badge,
-                }"
-              >
+              <a v-if="hasItems(item)" href="javascript:void(0);" class="is-parent" :class="{
+                'has-arrow': !item.badge,
+                'has-dropdown': item.badge,
+              }">
                 <i :class="`${item.icon}`" v-if="item.icon"></i>
 
-                <span
-                  :class="`badge rounded-pill bg-${item.badge.variant} float-end`"
-                  v-if="item.badge"
-                  >{{ $t(item.badge.text) }}</span
-                >
+                <span :class="`badge rounded-pill bg-${item.badge.variant} float-end`" v-if="item.badge">{{
+                    $t(item.badge.text)
+                }}</span>
                 <span>{{ $t(item.label) }}</span>
               </a>
 
-              <router-link
-                :to="item.link"
-                v-if="!hasItems(item)"
-                class="side-nav-link-ref"
-              >
+              <router-link :to="item.link" v-if="!hasItems(item)" class="side-nav-link-ref">
                 <i :class="`${item.icon}`" v-if="item.icon"></i>
                 <span>{{ $t(item.label) }}</span>
-                <span
-                  :class="`badge rounded-pill bg-${item.badge.variant} float-end`"
-                  v-if="item.badge"
-                  >{{ $t(item.badge.text) }}</span
-                >
+                <span :class="`badge rounded-pill bg-${item.badge.variant} float-end`" v-if="item.badge">{{
+                    $t(item.badge.text)
+                }}</span>
               </router-link>
 
               <ul v-if="hasItems(item)" class="sub-menu" aria-expanded="false">
                 <li v-for="(subitem, index) of item.subItems" :key="index">
-                  <router-link
-                    :to="subitem.link"
-                    v-if="!hasItems(subitem)"
-                    class="side-nav-link-ref"
-                    >{{ $t(subitem.label) }}</router-link
-                  >
-                  <a
-                    v-if="hasItems(subitem)"
-                    class="side-nav-link-a-ref has-arrow"
-                    href="javascript:void(0);"
-                    >{{ $t(subitem.label) }}</a
-                  >
-                  <ul
-                    v-if="hasItems(subitem)"
-                    class="sub-menu mm-collapse"
-                    aria-expanded="false"
-                  >
-                    <li
-                      v-for="(subSubitem, index) of subitem.subItems"
-                      :key="index"
-                    >
-                      <router-link
-                        :to="subSubitem.link"
-                        class="side-nav-link-ref"
-                        >{{ $t(subSubitem.label) }}</router-link
-                      >
+                  <router-link :to="subitem.link" v-if="!hasItems(subitem)" class="side-nav-link-ref">{{
+                      $t(subitem.label)
+                  }}</router-link>
+                  <a v-if="hasItems(subitem)" class="side-nav-link-a-ref has-arrow" href="javascript:void(0);">{{
+                      $t(subitem.label)
+                  }}</a>
+                  <ul v-if="hasItems(subitem)" class="sub-menu mm-collapse" aria-expanded="false">
+                    <li v-for="(subSubitem, index) of subitem.subItems" :key="index">
+                      <router-link :to="subSubitem.link" class="side-nav-link-ref">{{ $t(subSubitem.label) }}
+                      </router-link>
                     </li>
                   </ul>
                 </li>
